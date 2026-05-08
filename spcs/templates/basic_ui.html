@@ -1,0 +1,95 @@
+<!-- <!DOCTYPE html>
+<html lang=“en”>
+
+<head>
+  <title>Welcome to echo service!</title>
+</head>
+
+<body>
+  <h1>Welcome to echo service!</h1>
+  <form action="{{ url_for("ui") }}" method="post">
+    <label for="input">Input:<label><br>
+    <input type="text" id="input" name="input"><br>
+  </form>
+  <h2>Input:</h2>
+    {{ echo_input }}
+  <h2>Output:</h2>
+    {{ echo_reponse }}
+</body>
+
+</html>
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Echo Service</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .box {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .history-item {
+      padding: 6px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Echo Service</h1>
+
+  <!-- 入力フォーム -->
+  <div class="box">
+    <form action="{{ url_for('ui') }}" method="post">
+      <label class="label" for="input">Input:</label><br>
+      <input type="text" id="input" name="input" style="width: 300px;">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <!-- 最新入力 -->
+  <div class="box">
+    <h3>Latest Input</h3>
+    <div>{{ echo_input }}</div>
+  </div>
+
+  <!-- 最新出力 -->
+  <div class="box">
+    <h3>Latest Output</h3>
+    <div>{{ echo_reponse }}</div>
+  </div>
+
+  <!-- 履歴 -->
+  <div class="box">
+    <h3>History (latest 20)</h3>
+
+    {% if history %}
+      {% for h in history %}
+        <div class="history-item">
+          <div><span class="label">Input:</span> {{ h.input_text }}</div>
+          <div><span class="label">Output:</span> {{ h.response_text }}</div>
+          <div><small>{{ h.created_at }}</small></div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div>No history yet</div>
+    {% endif %}
+
+  </div>
+
+</body>
+
+</html>
