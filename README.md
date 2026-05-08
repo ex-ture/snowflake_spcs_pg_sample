@@ -27,3 +27,10 @@ docker push exture-practice.registry.snowflakecomputing.com/spcs_tutorial_db/dat
 
 
 ```
+
+## serviceのendpointを取得してuiを確認
+```
+SHOW ENDPOINTS IN SERVICE echo_service;
+
+# 上で取得したendpointの末尾に/uiを付けてアクセス
+```
